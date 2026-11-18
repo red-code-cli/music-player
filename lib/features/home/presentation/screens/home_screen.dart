@@ -36,9 +36,9 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(18),
                       border: Border.all(color: AppColors.border),
                     ),
-                    child: Column(
+                    child: const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
                           'OFFLINE MUSIC HUB',
                           style: TextStyle(
@@ -75,9 +75,9 @@ class HomeScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(color: AppColors.border),
                     ),
-                    child: Column(
+                    child: const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(
                           Icons.history_rounded,
                           color: AppColors.textSecondary,

@@ -50,7 +50,7 @@ class SettingsScreen extends StatelessWidget {
                       subtitle: 'Continuous seamless audio',
                       trailing: Switch(
                         value: true,
-                        activeColor: AppColors.accent,
+                        activeThumbColor: AppColors.accent,
                         onChanged: (val) {},
                       ),
                       onTap: null,
@@ -74,7 +74,7 @@ class SettingsScreen extends StatelessWidget {
                       subtitle: 'Filter out ringtones & notification sounds',
                       trailing: Switch(
                         value: true,
-                        activeColor: AppColors.accent,
+                        activeThumbColor: AppColors.accent,
                         onChanged: (val) {},
                       ),
                       onTap: null,

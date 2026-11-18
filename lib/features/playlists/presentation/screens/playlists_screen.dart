@@ -73,9 +73,9 @@ class PlaylistsScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       Text(
                         'All Playlists',
                         style: AppTypography.title3,
@@ -91,9 +91,9 @@ class PlaylistsScreen extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(color: AppColors.border),
                     ),
-                    child: Column(
+                    child: const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         Icon(
                           Icons.playlist_add_rounded,
                           color: AppColors.textSecondary,
