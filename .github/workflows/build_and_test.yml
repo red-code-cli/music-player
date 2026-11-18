@@ -34,11 +34,15 @@ jobs:
             echo "Generating Flutter Android scaffolding..."
             flutter create --platforms=android --org com.offline.musicplayer .
           fi
-          echo "Applying custom AndroidManifest and build.gradle for offline player & audio_service..."
+          echo "Applying custom Android configurations..."
           if [ -f "android/app/build.gradle.kts" ]; then
             rm -f android/app/build.gradle.kts
           fi
+          if [ -f "android/build.gradle.kts" ]; then
+            rm -f android/build.gradle.kts
+          fi
           cp -f android_config/build.gradle android/app/build.gradle
+          cat android_config/root_build.gradle > android/build.gradle
           cp -f android_config/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
 
       - name: Install Dependencies
