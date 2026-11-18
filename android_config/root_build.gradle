@@ -17,17 +17,26 @@ tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
 
-subprojects {
-    afterEvaluate { project ->
-        if (project.hasProperty('android')) {
-            project.android {
-                if (namespace == null) {
-                    if (project.name == 'on_audio_query_android') {
-                        namespace 'com.lucasjosino.on_audio_query'
-                    } else {
-                        namespace "com.offline.${project.name.replaceAll('-', '_')}"
+subprojects { subproject ->
+    if (subproject.name != 'app') {
+        def configureProject = {
+            if (subproject.hasProperty('android')) {
+                subproject.android {
+                    if (namespace == null) {
+                        if (subproject.name == 'on_audio_query_android') {
+                            namespace 'com.lucasjosino.on_audio_query'
+                        } else {
+                            namespace "com.offline.${subproject.name.replaceAll('-', '_')}"
+                        }
                     }
                 }
+            }
+        }
+        if (subproject.state.executed) {
+            configureProject()
+        } else {
+            subproject.afterEvaluate {
+                configureProject()
             }
         }
     }
