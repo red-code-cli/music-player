@@ -28,6 +28,34 @@ jobs:
           channel: 'stable'
           cache: true
 
+      - name: Cache Flutter Pub Packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pub-
+
+      - name: Cache Gradle Dependencies & Wrapper
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Cache Android NDK & SDK Components
+        uses: actions/cache@v4
+        with:
+          path: |
+            /usr/local/lib/android/sdk/ndk
+            /usr/local/lib/android/sdk/platforms/android-36
+          key: ${{ runner.os }}-android-ndk-sdk-36
+          restore-keys: |
+            ${{ runner.os }}-android-ndk-sdk-
+
       - name: Setup Android Scaffolding & Configuration
         run: |
           if [ ! -d "android" ]; then
