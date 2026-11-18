@@ -18,7 +18,7 @@ Future<AudioHandler> initAudioService() async {
   );
 }
 
-class MusicAudioHandler extends BaseAudioHandler with QueueAudioHandler {
+class MusicAudioHandler extends BaseAudioHandler {
   final AudioPlayer _player = AudioPlayer();
   final AppDatabase _db = AppDatabase.instance;
 
