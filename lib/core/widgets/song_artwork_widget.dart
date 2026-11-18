@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import '../constants/app_colors.dart';
+import 'package:music_player/core/constants/app_colors.dart';
 
 class SongArtworkWidget extends StatelessWidget {
   final int id;

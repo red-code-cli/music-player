@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../data/repositories/audio_query_repository.dart';
-import '../../domain/models/album_model.dart';
-import '../../domain/models/artist_model.dart';
-import '../../domain/models/folder_model.dart';
-import '../../domain/models/song_model.dart';
+import 'package:music_player/features/library/data/repositories/audio_query_repository.dart';
+import 'package:music_player/features/library/domain/models/album_model.dart';
+import 'package:music_player/features/library/domain/models/artist_model.dart';
+import 'package:music_player/features/library/domain/models/folder_model.dart';
+import 'package:music_player/features/library/domain/models/song_model.dart';
 
 final audioQueryRepositoryProvider = Provider<AudioQueryRepository>((ref) {
   return AudioQueryRepository();

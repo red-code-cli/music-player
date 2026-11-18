@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_typography.dart';
-import '../controllers/player_controller.dart';
+import 'package:music_player/core/constants/app_colors.dart';
+import 'package:music_player/core/constants/app_typography.dart';
+import 'package:music_player/features/player/presentation/controllers/player_controller.dart';
 
 class SleepTimerDialog extends StatelessWidget {
   final PlayerController controller;

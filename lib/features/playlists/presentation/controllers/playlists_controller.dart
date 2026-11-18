@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../data/database/app_database.dart';
-import '../../domain/models/playlist_model.dart';
-import '../../../library/domain/models/song_model.dart';
+import 'package:music_player/features/playlists/data/database/app_database.dart';
+import 'package:music_player/features/playlists/domain/models/playlist_model.dart';
+import 'package:music_player/features/library/domain/models/song_model.dart';
 
 final databaseProvider = Provider<AppDatabase>((ref) {
   return AppDatabase.instance;

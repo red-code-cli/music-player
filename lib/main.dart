@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'core/services/audio_handler.dart';
-import 'core/theme/app_theme.dart';
-import 'features/navigation/presentation/main_navigation_shell.dart';
-import 'features/player/presentation/controllers/player_controller.dart';
+import 'package:music_player/core/services/audio_handler.dart';
+import 'package:music_player/core/theme/app_theme.dart';
+import 'package:music_player/features/navigation/presentation/main_navigation_shell.dart';
+import 'package:music_player/features/player/presentation/controllers/player_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

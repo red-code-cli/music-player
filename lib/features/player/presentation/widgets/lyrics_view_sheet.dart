@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_typography.dart';
-import '../../../../core/utils/lrc_parser.dart';
-import '../../library/domain/models/song_model.dart';
+import 'package:music_player/core/constants/app_colors.dart';
+import 'package:music_player/core/constants/app_typography.dart';
+import 'package:music_player/core/utils/lrc_parser.dart';
+import 'package:music_player/features/library/domain/models/song_model.dart';
 
 class LyricsViewSheet extends StatefulWidget {
   final SongModel song;
@@ -120,11 +120,11 @@ class _LyricsViewSheetState extends State<LyricsViewSheet> {
               child: _isLoading
                   ? const Center(child: CircularProgressIndicator(color: AppColors.accent))
                   : _lyrics.isEmpty
-                      ? Padding(
-                          padding: const EdgeInsets.all(32.0),
+                      ? const Padding(
+                          padding: EdgeInsets.all(32.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.lyrics_rounded,
                                 size: 54,

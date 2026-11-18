@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../constants/app_colors.dart';
+import 'package:music_player/core/constants/app_colors.dart';
 
 /// Translucent frosted-glass container with backdrop blur
 class GlassContainer extends StatelessWidget {

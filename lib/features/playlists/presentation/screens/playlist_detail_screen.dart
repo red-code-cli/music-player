@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_typography.dart';
-import '../../../../core/widgets/apple_music_app_bar.dart';
-import '../../../../core/widgets/song_artwork_widget.dart';
-import '../../../library/domain/models/song_model.dart';
-import '../../../library/presentation/widgets/song_options_bottom_sheet.dart';
-import '../../../player/presentation/controllers/player_controller.dart';
-import '../controllers/playlists_controller.dart';
+import 'package:music_player/core/constants/app_colors.dart';
+import 'package:music_player/core/constants/app_typography.dart';
+import 'package:music_player/core/widgets/apple_music_app_bar.dart';
+import 'package:music_player/core/widgets/song_artwork_widget.dart';
+import 'package:music_player/features/library/domain/models/song_model.dart';
+import 'package:music_player/features/library/presentation/widgets/song_options_bottom_sheet.dart';
+import 'package:music_player/features/player/presentation/controllers/player_controller.dart';
+import 'package:music_player/features/playlists/presentation/controllers/playlists_controller.dart';
 
 class PlaylistDetailScreen extends ConsumerStatefulWidget {
   final String title;
@@ -198,7 +198,7 @@ class _PlaylistDetailScreenState extends ConsumerState<PlaylistDetailScreen> {
               if (newName.isNotEmpty && widget.playlistId != null) {
                 ref.read(playlistsProvider.notifier).renamePlaylist(widget.playlistId!, newName);
                 Navigator.pop(ctx);
-                Navigator.pop(context); // return to playlists
+                Navigator.pop(context);
               }
             },
           ),

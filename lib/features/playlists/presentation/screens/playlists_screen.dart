@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_typography.dart';
-import '../../../../core/widgets/apple_music_app_bar.dart';
-import '../../domain/models/playlist_model.dart';
-import '../controllers/playlists_controller.dart';
-import '../../../library/presentation/controllers/library_controller.dart';
-import '../../../player/presentation/controllers/player_controller.dart';
-import 'playlist_detail_screen.dart';
+import 'package:music_player/core/constants/app_colors.dart';
+import 'package:music_player/core/constants/app_typography.dart';
+import 'package:music_player/core/widgets/apple_music_app_bar.dart';
+import 'package:music_player/features/playlists/domain/models/playlist_model.dart';
+import 'package:music_player/features/playlists/presentation/controllers/playlists_controller.dart';
+import 'package:music_player/features/library/presentation/controllers/library_controller.dart';
+import 'package:music_player/features/player/presentation/controllers/player_controller.dart';
+import 'package:music_player/features/playlists/presentation/screens/playlist_detail_screen.dart';
 
 class PlaylistsScreen extends ConsumerWidget {
   const PlaylistsScreen({super.key});

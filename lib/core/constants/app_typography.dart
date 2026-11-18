@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app_colors.dart';
+import 'package:music_player/core/constants/app_colors.dart';
 
 /// iOS-styled Typography Hierarchy
 class AppTypography {

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/services/permission_service.dart';
-import '../../../../core/widgets/glass_container.dart';
-import '../../home/presentation/screens/home_screen.dart';
-import '../../library/presentation/controllers/library_controller.dart';
-import '../../library/presentation/screens/library_screen.dart';
-import '../../playlists/presentation/screens/playlists_screen.dart';
-import '../../search/presentation/screens/search_screen.dart';
-import '../../settings/presentation/screens/settings_screen.dart';
-import '../../player/presentation/widgets/mini_player.dart';
+import 'package:music_player/core/constants/app_colors.dart';
+import 'package:music_player/core/services/permission_service.dart';
+import 'package:music_player/core/widgets/glass_container.dart';
+import 'package:music_player/features/home/presentation/screens/home_screen.dart';
+import 'package:music_player/features/library/presentation/controllers/library_controller.dart';
+import 'package:music_player/features/library/presentation/screens/library_screen.dart';
+import 'package:music_player/features/playlists/presentation/screens/playlists_screen.dart';
+import 'package:music_player/features/search/presentation/screens/search_screen.dart';
+import 'package:music_player/features/settings/presentation/screens/settings_screen.dart';
+import 'package:music_player/features/player/presentation/widgets/mini_player.dart';
 
 class MainNavigationShell extends ConsumerStatefulWidget {
   const MainNavigationShell({super.key});

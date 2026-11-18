@@ -1,6 +1,6 @@
 import 'package:path/path.dart' as p;
 import 'package:sqflite/sqflite.dart';
-import '../../domain/models/playlist_model.dart';
+import 'package:music_player/features/playlists/domain/models/playlist_model.dart';
 
 class AppDatabase {
   static final AppDatabase instance = AppDatabase._internal();
@@ -145,7 +145,6 @@ class AppDatabase {
 
   Future<void> addSongToPlaylist(int playlistId, int songId) async {
     final db = await database;
-    // Get max sort_order
     final maxOrderRes = await db.rawQuery('''
       SELECT MAX(sort_order) as max_order FROM playlist_songs WHERE playlist_id = ?
     ''', [playlistId]);

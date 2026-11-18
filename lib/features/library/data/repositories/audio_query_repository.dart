@@ -1,10 +1,10 @@
 import 'dart:io';
-import 'package:on_audio_query/on_audio_query.dart';
-import '../../domain/models/album_model.dart';
-import '../../domain/models/artist_model.dart';
-import '../../domain/models/folder_model.dart';
-import '../../domain/models/song_model.dart';
-import '../../../playlists/data/database/app_database.dart';
+import 'package:on_audio_query/on_audio_query.dart' as aq;
+import 'package:music_player/features/library/domain/models/album_model.dart';
+import 'package:music_player/features/library/domain/models/artist_model.dart';
+import 'package:music_player/features/library/domain/models/folder_model.dart';
+import 'package:music_player/features/library/domain/models/song_model.dart';
+import 'package:music_player/features/playlists/data/database/app_database.dart';
 
 enum SongSortOption {
   titleAsc,
@@ -16,13 +16,13 @@ enum SongSortOption {
 }
 
 class AudioQueryRepository {
-  final OnAudioQuery _audioQuery;
+  final aq.OnAudioQuery _audioQuery;
   final AppDatabase _db;
 
   AudioQueryRepository({
-    OnAudioQuery? audioQuery,
+    aq.OnAudioQuery? audioQuery,
     AppDatabase? database,
-  })  : _audioQuery = audioQuery ?? OnAudioQuery(),
+  })  : _audioQuery = audioQuery ?? aq.OnAudioQuery(),
         _db = database ?? AppDatabase.instance;
 
   /// Query all songs with duration filter & local database sync
@@ -32,9 +32,9 @@ class AudioQueryRepository {
     SongSortOption sortOption = SongSortOption.titleAsc,
   }) async {
     final rawSongs = await _audioQuery.querySongs(
-      sortType: SongSortType.TITLE,
-      orderType: OrderType.ASC_OR_SMALLER,
-      uriType: UriType.EXTERNAL,
+      sortType: aq.SongSortType.TITLE,
+      orderType: aq.OrderType.ASC_OR_SMALLER,
+      uriType: aq.UriType.EXTERNAL,
       ignoreCase: true,
     );
 
@@ -72,8 +72,8 @@ class AudioQueryRepository {
   /// Query Albums
   Future<List<AlbumModel>> fetchAlbums() async {
     final rawAlbums = await _audioQuery.queryAlbums(
-      sortType: AlbumSortType.ALBUM,
-      orderType: OrderType.ASC_OR_SMALLER,
+      sortType: aq.AlbumSortType.ALBUM,
+      orderType: aq.OrderType.ASC_OR_SMALLER,
       ignoreCase: true,
     );
 
@@ -90,8 +90,8 @@ class AudioQueryRepository {
   /// Query Artists
   Future<List<ArtistModel>> fetchArtists() async {
     final rawArtists = await _audioQuery.queryArtists(
-      sortType: ArtistSortType.ARTIST,
-      orderType: OrderType.ASC_OR_SMALLER,
+      sortType: aq.ArtistSortType.ARTIST,
+      orderType: aq.OrderType.ASC_OR_SMALLER,
       ignoreCase: true,
     );
 

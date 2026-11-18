@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_typography.dart';
-import '../../../../core/widgets/glass_container.dart';
-import '../../../../core/widgets/song_artwork_widget.dart';
-import '../../library/domain/models/song_model.dart';
-import '../controllers/player_controller.dart';
-import '../screens/full_player_screen.dart';
+import 'package:music_player/core/constants/app_colors.dart';
+import 'package:music_player/core/constants/app_typography.dart';
+import 'package:music_player/core/widgets/glass_container.dart';
+import 'package:music_player/core/widgets/song_artwork_widget.dart';
+import 'package:music_player/features/library/domain/models/song_model.dart';
+import 'package:music_player/features/player/presentation/controllers/player_controller.dart';
+import 'package:music_player/features/player/presentation/screens/full_player_screen.dart';
 
 class MiniPlayerWidget extends ConsumerWidget {
   const MiniPlayerWidget({super.key});

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_typography.dart';
-import '../../../../core/widgets/apple_music_app_bar.dart';
-import 'songs_tab.dart';
-import 'albums_tab.dart';
-import 'artists_tab.dart';
-import 'folders_tab.dart';
-import '../../../playlists/presentation/screens/playlists_screen.dart';
+import 'package:music_player/core/constants/app_colors.dart';
+import 'package:music_player/core/constants/app_typography.dart';
+import 'package:music_player/core/widgets/apple_music_app_bar.dart';
+import 'package:music_player/features/library/presentation/screens/songs_tab.dart';
+import 'package:music_player/features/library/presentation/screens/albums_tab.dart';
+import 'package:music_player/features/library/presentation/screens/artists_tab.dart';
+import 'package:music_player/features/library/presentation/screens/folders_tab.dart';
+import 'package:music_player/features/playlists/presentation/screens/playlists_screen.dart';
 
 class LibraryScreen extends StatelessWidget {
   const LibraryScreen({super.key});

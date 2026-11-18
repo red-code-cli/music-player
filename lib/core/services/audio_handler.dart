@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:audio_service/audio_service.dart';
 import 'package:just_audio/just_audio.dart';
-import '../../features/library/domain/models/song_model.dart';
-import '../../features/playlists/data/database/app_database.dart';
+import 'package:music_player/features/library/domain/models/song_model.dart';
+import 'package:music_player/features/playlists/data/database/app_database.dart';
 
 Future<AudioHandler> initAudioService() async {
   return await AudioService.init(
@@ -18,7 +18,7 @@ Future<AudioHandler> initAudioService() async {
   );
 }
 
-class MusicAudioHandler extends BaseAudioHandler with QueueAudioHandler, SeekHandler {
+class MusicAudioHandler extends BaseAudioHandler with QueueAudioHandler {
   final AudioPlayer _player = AudioPlayer();
   final AppDatabase _db = AppDatabase.instance;
 
@@ -124,10 +124,8 @@ class MusicAudioHandler extends BaseAudioHandler with QueueAudioHandler, SeekHan
     try {
       await _player.setFilePath(song.filePath);
       await _player.play();
-      // Record play in SQLite
       unawaited(_db.recordPlay(song.id));
     } catch (e) {
-      // If error loading track, skip to next
       if (_currentSongList.length > 1) {
         skipToNext();
       }
@@ -264,7 +262,7 @@ class MusicAudioHandler extends BaseAudioHandler with QueueAudioHandler, SeekHan
     }
   }
 
-  void removeQueueItem(int index) {
+  void removeQueueItemAtIndex(int index) {
     if (index < 0 || index >= _currentSongList.length) return;
     _currentSongList.removeAt(index);
     final queueItems = List<MediaItem>.from(queue.value);

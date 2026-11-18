@@ -1,9 +1,9 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:just_audio/just_audio.dart';
-import '../../../../core/services/audio_handler.dart';
-import '../../../library/domain/models/song_model.dart';
-import '../../../playlists/data/database/app_database.dart';
+import 'package:music_player/core/services/audio_handler.dart';
+import 'package:music_player/features/library/domain/models/song_model.dart';
+import 'package:music_player/features/playlists/data/database/app_database.dart';
 
 // 1. AudioHandler Global Provider
 final audioHandlerProvider = Provider<MusicAudioHandler>((ref) {
@@ -106,7 +106,7 @@ class PlayerController {
   void playNext(SongModel song) => _handler.playNext(song);
   void addToQueue(SongModel song) => _handler.addToQueue(song);
   void reorderQueue(int oldIndex, int newIndex) => _handler.reorderQueue(oldIndex, newIndex);
-  void removeQueueItem(int index) => _handler.removeQueueItem(index);
+  void removeQueueItem(int index) => _handler.removeQueueItemAtIndex(index);
 
   void setSpeed(double speed) => _handler.setSpeed(speed);
   void startSleepTimer(Duration duration) => _handler.startSleepTimer(duration);

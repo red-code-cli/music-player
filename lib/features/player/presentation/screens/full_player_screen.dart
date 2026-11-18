@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:marquee/marquee.dart';
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_typography.dart';
-import '../../../../core/utils/formatters.dart';
-import '../../../../core/widgets/song_artwork_widget.dart';
-import '../../library/domain/models/song_model.dart';
-import '../controllers/player_controller.dart';
-import '../widgets/queue_bottom_sheet.dart';
-import '../widgets/equalizer_dialog.dart';
-import '../widgets/sleep_timer_dialog.dart';
-import '../widgets/lyrics_view_sheet.dart';
+import 'package:music_player/core/constants/app_colors.dart';
+import 'package:music_player/core/constants/app_typography.dart';
+import 'package:music_player/core/utils/formatters.dart';
+import 'package:music_player/core/widgets/song_artwork_widget.dart';
+import 'package:music_player/features/library/domain/models/song_model.dart';
+import 'package:music_player/features/player/presentation/controllers/player_controller.dart';
+import 'package:music_player/features/player/presentation/widgets/queue_bottom_sheet.dart';
+import 'package:music_player/features/player/presentation/widgets/equalizer_dialog.dart';
+import 'package:music_player/features/player/presentation/widgets/sleep_timer_dialog.dart';
+import 'package:music_player/features/player/presentation/widgets/lyrics_view_sheet.dart';
 
 class FullPlayerScreen extends ConsumerWidget {
   final SongModel song;
