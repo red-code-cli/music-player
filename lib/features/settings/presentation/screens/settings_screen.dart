@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_typography.dart';
 import '../../../../core/widgets/apple_music_app_bar.dart';
+import '../../../library/presentation/controllers/library_controller.dart';
+import '../../../player/presentation/controllers/player_controller.dart';
+import '../../../player/presentation/widgets/equalizer_dialog.dart';
+import '../../../player/presentation/widgets/sleep_timer_dialog.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final libraryState = ref.watch(libraryProvider);
+    final libraryNotifier = ref.read(libraryProvider.notifier);
+    final playerController = ref.read(playerControllerProvider);
+
     return Scaffold(
       backgroundColor: AppColors.background,
       body: CustomScrollView(
@@ -36,13 +45,13 @@ class SettingsScreen extends StatelessWidget {
                       icon: Icons.equalizer_rounded,
                       title: 'Equalizer & Bass Boost',
                       subtitle: 'Tune audio frequencies and sound stage',
-                      onTap: () {},
+                      onTap: () => EqualizerDialog.show(context),
                     ),
                     _buildSettingsTile(
                       icon: Icons.timer_rounded,
                       title: 'Sleep Timer',
                       subtitle: 'Stop playback automatically',
-                      onTap: () {},
+                      onTap: () => SleepTimerDialog.show(context, playerController),
                     ),
                     _buildSettingsTile(
                       icon: Icons.tune_rounded,
@@ -73,9 +82,9 @@ class SettingsScreen extends StatelessWidget {
                       title: 'Exclude Short Audio (< 30s)',
                       subtitle: 'Filter out ringtones & notification sounds',
                       trailing: Switch(
-                        value: true,
+                        value: libraryState.excludeShortSongs,
                         activeThumbColor: AppColors.accent,
-                        onChanged: (val) {},
+                        onChanged: (val) => libraryNotifier.toggleExcludeShortSongs(val),
                       ),
                       onTap: null,
                     ),
@@ -83,7 +92,12 @@ class SettingsScreen extends StatelessWidget {
                       icon: Icons.refresh_rounded,
                       title: 'Rescan Storage',
                       subtitle: 'Scan device for newly added music',
-                      onTap: () {},
+                      onTap: () {
+                        libraryNotifier.scanLibrary();
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Scanning storage for music...')),
+                        );
+                      },
                     ),
                   ]),
                   const SizedBox(height: 24),
@@ -99,9 +113,15 @@ class SettingsScreen extends StatelessWidget {
                   const SizedBox(height: 8),
                   _buildSettingsGroup([
                     _buildSettingsTile(
+                      icon: Icons.security_rounded,
+                      title: 'Offline & Privacy First',
+                      subtitle: 'Zero internet permissions, 100% private',
+                      onTap: null,
+                    ),
+                    _buildSettingsTile(
                       icon: Icons.info_outline_rounded,
                       title: 'Version',
-                      subtitle: '1.0.0 (100% Offline, Privacy First)',
+                      subtitle: '1.0.0 (Release Build)',
                       onTap: null,
                     ),
                   ]),
@@ -118,12 +138,14 @@ class SettingsScreen extends StatelessWidget {
   }
 
   Widget _buildSettingsGroup(List<Widget> children) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.surface,
+    return Material(
+      color: AppColors.surface,
+      borderRadius: BorderRadius.circular(14),
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: AppColors.border, width: 0.5),
+        side: const BorderSide(color: AppColors.border, width: 0.5),
       ),
+      clipBehavior: Clip.antiAlias,
       child: Column(
         children: children,
       ),

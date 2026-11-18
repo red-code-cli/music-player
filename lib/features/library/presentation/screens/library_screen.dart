@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_typography.dart';
 import '../../../../core/widgets/apple_music_app_bar.dart';
+import 'songs_tab.dart';
+import 'albums_tab.dart';
+import 'artists_tab.dart';
+import 'folders_tab.dart';
+import '../../../playlists/presentation/screens/playlists_screen.dart';
 
 class LibraryScreen extends StatelessWidget {
   const LibraryScreen({super.key});
@@ -9,12 +14,36 @@ class LibraryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final libraryItems = [
-      (Icons.music_note_rounded, 'Songs', 'All local tracks'),
-      (Icons.album_rounded, 'Albums', 'Grouped by album'),
-      (Icons.person_rounded, 'Artists', 'All music artists'),
-      (Icons.playlist_play_rounded, 'Playlists', 'Your created playlists'),
-      (Icons.category_rounded, 'Genres', 'Pop, Rock, Classical, etc.'),
-      (Icons.folder_rounded, 'Folders', 'Storage directories'),
+      (
+        Icons.music_note_rounded,
+        'Songs',
+        'All local tracks',
+        (BuildContext ctx) => Navigator.push(ctx, MaterialPageRoute(builder: (_) => const SongsTabScreen()))
+      ),
+      (
+        Icons.album_rounded,
+        'Albums',
+        'Grouped by album',
+        (BuildContext ctx) => Navigator.push(ctx, MaterialPageRoute(builder: (_) => const AlbumsTabScreen()))
+      ),
+      (
+        Icons.person_rounded,
+        'Artists',
+        'All music artists',
+        (BuildContext ctx) => Navigator.push(ctx, MaterialPageRoute(builder: (_) => const ArtistsTabScreen()))
+      ),
+      (
+        Icons.playlist_play_rounded,
+        'Playlists',
+        'Your created playlists',
+        (BuildContext ctx) => Navigator.push(ctx, MaterialPageRoute(builder: (_) => const PlaylistsScreen()))
+      ),
+      (
+        Icons.folder_rounded,
+        'Folders',
+        'Storage directories',
+        (BuildContext ctx) => Navigator.push(ctx, MaterialPageRoute(builder: (_) => const FoldersTabScreen()))
+      ),
     ];
 
     return Scaffold(
@@ -61,9 +90,7 @@ class LibraryScreen extends StatelessWidget {
                         color: AppColors.textTertiary,
                         size: 24,
                       ),
-                      onTap: () {
-                        // Will navigate to respective tabs/screens in Phase 3
-                      },
+                      onTap: () => item.$4(context),
                     ),
                     const Padding(
                       padding: EdgeInsets.only(left: 72, right: 20),

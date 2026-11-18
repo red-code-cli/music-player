@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'core/services/audio_handler.dart';
 import 'core/theme/app_theme.dart';
 import 'features/navigation/presentation/main_navigation_shell.dart';
+import 'features/player/presentation/controllers/player_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,9 +19,15 @@ void main() async {
     ),
   );
 
+  // Initialize background Audio Service
+  final audioHandler = await initAudioService();
+
   runApp(
-    const ProviderScope(
-      child: AppleMusicPlayerApp(),
+    ProviderScope(
+      overrides: [
+        audioHandlerProvider.overrideWithValue(audioHandler as MusicAudioHandler),
+      ],
+      child: const AppleMusicPlayerApp(),
     ),
   );
 }

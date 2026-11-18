@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../../../core/services/permission_service.dart';
 import '../../../../core/widgets/glass_container.dart';
 import '../../home/presentation/screens/home_screen.dart';
+import '../../library/presentation/controllers/library_controller.dart';
 import '../../library/presentation/screens/library_screen.dart';
 import '../../playlists/presentation/screens/playlists_screen.dart';
 import '../../search/presentation/screens/search_screen.dart';
 import '../../settings/presentation/screens/settings_screen.dart';
 import '../../player/presentation/widgets/mini_player.dart';
 
-class MainNavigationShell extends StatefulWidget {
+class MainNavigationShell extends ConsumerStatefulWidget {
   const MainNavigationShell({super.key});
 
   @override
-  State<MainNavigationShell> createState() => _MainNavigationShellState();
+  ConsumerState<MainNavigationShell> createState() => _MainNavigationShellState();
 }
 
-class _MainNavigationShellState extends State<MainNavigationShell> {
+class _MainNavigationShellState extends ConsumerState<MainNavigationShell> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = const [
@@ -27,18 +30,31 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _checkAndRequestPermissions();
+  }
+
+  Future<void> _checkAndRequestPermissions() async {
+    final granted = await PermissionService.requestPermissions();
+    if (granted) {
+      ref.read(libraryProvider.notifier).scanLibrary();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Stack(
         children: [
-          // Screen content with IndexedStack
+          // Persistent Tab Screens
           IndexedStack(
             index: _currentIndex,
             children: _screens,
           ),
 
-          // Bottom Bar & Mini Player Overlay
+          // Bottom Bar & Floating Mini Player
           Positioned(
             left: 0,
             right: 0,
@@ -46,13 +62,7 @@ class _MainNavigationShellState extends State<MainNavigationShell> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Floating Mini Player
-                MiniPlayerWidget(
-                  onTap: () {
-                    // Full player sheet trigger in Phase 5
-                  },
-                ),
-                // Frosted Glass Bottom Navigation Bar
+                const MiniPlayerWidget(),
                 GlassContainer(
                   blur: 24,
                   backgroundColor: AppColors.glassBackground,

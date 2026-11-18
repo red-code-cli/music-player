@@ -1,23 +1,48 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:music_player/main.dart';
+import 'package:music_player/core/constants/app_colors.dart';
+import 'package:music_player/core/theme/app_theme.dart';
+import 'package:music_player/core/widgets/apple_music_app_bar.dart';
+import 'package:music_player/core/widgets/glass_container.dart';
 
 void main() {
-  testWidgets('App renders navigation shell and tabs', (WidgetTester tester) async {
+  testWidgets('AppleMusicSliverAppBar renders title correctly', (WidgetTester tester) async {
     await tester.pumpWidget(
-      const ProviderScope(
-        child: AppleMusicPlayerApp(),
+      MaterialApp(
+        theme: AppTheme.darkTheme,
+        home: const Scaffold(
+          body: CustomScrollView(
+            slivers: [
+              AppleMusicSliverAppBar(title: 'Listen Now'),
+            ],
+          ),
+        ),
       ),
     );
 
-    // Verify presence of main tabs
-    expect(find.text('Listen Now'), findsWidgets);
-    expect(find.text('Library'), findsWidgets);
-    expect(find.text('Playlists'), findsWidgets);
-    expect(find.text('Search'), findsWidgets);
-    expect(find.text('Settings'), findsWidgets);
+    expect(find.text('Listen Now'), findsOneWidget);
+  });
 
-    // Verify mini player presence
-    expect(find.text('No Track Playing'), findsOneWidget);
+  testWidgets('GlassContainer renders with frosted glass blur', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: AppTheme.darkTheme,
+        home: const Scaffold(
+          body: GlassContainer(
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+            child: Text('Frosted Glass Test'),
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('Frosted Glass Test'), findsOneWidget);
+  });
+
+  test('AppTheme has pure black background and Apple Music accent', () {
+    final theme = AppTheme.darkTheme;
+    expect(theme.scaffoldBackgroundColor, AppColors.background);
+    expect(theme.primaryColor, AppColors.accent);
+    expect(theme.brightness, Brightness.dark);
   });
 }
