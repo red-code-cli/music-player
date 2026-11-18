@@ -29,6 +29,10 @@ subprojects { subproject ->
                             namespace "com.offline.${subproject.name.replaceAll('-', '_')}"
                         }
                     }
+                    compileOptions {
+                        sourceCompatibility JavaVersion.VERSION_17
+                        targetCompatibility JavaVersion.VERSION_17
+                    }
                 }
             }
         }

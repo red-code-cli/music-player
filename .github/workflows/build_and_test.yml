@@ -44,6 +44,7 @@ jobs:
           cp -f android_config/build.gradle android/app/build.gradle
           cat android_config/root_build.gradle > android/build.gradle
           cp -f android_config/AndroidManifest.xml android/app/src/main/AndroidManifest.xml
+          cat android_config/gradle.properties >> android/gradle.properties
 
       - name: Install Dependencies
         run: flutter pub get
